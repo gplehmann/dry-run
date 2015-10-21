@@ -2,12 +2,13 @@ html {
 	overflow: hidden;
 	height: 100%;
 	width: 100%;
-	background: rgba(240, 200, 255, 0.8);
+	background: rgba(50, 50, 50, 0.8);
+	color: rgba(250, 250, 250, 0.8);
 }
 
 .resizeGrip {
-	background: lightblue;
-	border: 1px solid blue;
+	background: lightgray;
+	border: 1px solid gray;
 	position: absolute;
 }
 
