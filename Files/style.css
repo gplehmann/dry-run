@@ -1,0 +1,29 @@
+html {
+	overflow: hidden;
+	height: 100%;
+	width: 100%;
+	background: rgba(240, 200, 255, 0.8);
+}
+
+.resizeGrip {
+	background: lightblue;
+	border: 1px solid blue;
+	position: absolute;
+}
+
+#content {
+	position: absolute;
+	top:10px;
+	bottom: 10px;
+	left: 10px;
+	right: 10px;
+	padding: 10px;
+}
+
+#resizeGripBottomRight {
+	width: 10px;
+	height: 10px;
+	bottom: 0;
+	right: 0;
+	cursor: nwse-resize;
+}

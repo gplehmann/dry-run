@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+	<head> 
+		<link rel="stylesheet" href="style.css" />
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+		<title>Dry Run</title>
+		<script>
+			function dragResize(edge){
+				overwolf.windows.getCurrentWindow(function(result){
+					if (result.status=="success"){
+						overwolf.windows.dragResize(result.window.id, edge);
+					}
+				});
+			};
+			
+			function dragMove(){
+				overwolf.windows.getCurrentWindow(function(result){
+					if (result.status=="success"){
+						overwolf.windows.dragMove(result.window.id);
+					}
+				});
+			};
+			
+			function closeWindow(){
+				overwolf.windows.getCurrentWindow(function(result){
+					if (result.status=="success"){
+						overwolf.windows.close(result.window.id);
+					}
+				});
+			};
+		</script>
+	</head>
+
+	<body>
+		<div class="resizeGrip" id="resizeGripBottomRight" onmousedown="dragResize('BottomRight');"></div>
+		<div id="content" onmousedown="dragMove();">
+			<h1>Dry Run</h1>
+			<p>You can drag from anywhere you want, and resize from the bottom-right.</p>
+			<button id="close" onclick="closeWindow();">X</button>
+			<img id="screenshot" width="300px"></img>
+		</div>
+	</body>
+</html>
