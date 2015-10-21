@@ -1,43 +1,126 @@
-﻿<!DOCTYPE html>
 <html>
-	<head> 
-		<link rel="stylesheet" href="style.css" />
-		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<head>
 		<title>Dry Run</title>
-		<script>
-			function dragResize(edge){
-				overwolf.windows.getCurrentWindow(function(result){
-					if (result.status=="success"){
-						overwolf.windows.dragResize(result.window.id, edge);
-					}
-				});
-			};
-			
-			function dragMove(){
-				overwolf.windows.getCurrentWindow(function(result){
-					if (result.status=="success"){
-						overwolf.windows.dragMove(result.window.id);
-					}
-				});
-			};
-			
-			function closeWindow(){
-				overwolf.windows.getCurrentWindow(function(result){
-					if (result.status=="success"){
-						overwolf.windows.close(result.window.id);
-					}
-				});
-			};
-		</script>
 	</head>
-
 	<body>
-		<div class="resizeGrip" id="resizeGripBottomRight" onmousedown="dragResize('BottomRight');"></div>
-		<div id="content" onmousedown="dragMove();">
-			<h1>Dry Run</h1>
-			<p>You can drag from anywhere you want, and resize from the bottom-right.</p>
-			<button id="close" onclick="closeWindow();">X</button>
-			<img id="screenshot" width="300px"></img>
-		</div>
+		<script src="jquery.min.js"></script>
+	    <script>      
+			var chatlinkJson = '{' +
+			'	"00": {' +
+			'		"chatlink": "Supplies@[&BJcHAAA=] Rustbucket@[&BJYHAAA=] TendrilW@[&BIYHAAA=] Shaman@[&BIsHAAA=] Victims@[&BIwHAAA=] Tootsie@[&BHYHAAA=] Crystals@[&BHIHAAA=] TendrilSE@[&BHMHAAA=]",' +
+			'		"apptext": "Supplies, Rustbucket, TendrilW, Shaman, Victims, Tootsie, Crystals, TendrilSE"' +
+			'	},' +
+			'	"05": {' +
+			'		"chatlink": "Beetles@[&BJYHAAA=] Bridge@[&BIkHAAA=] Experiment@[&BIwHAAA=] Golem@[&BIoHAAA=] Nochtli@[&BHkHAAA=] Colocal@[&BHwHAAA=] Serene@[&BHQHAAA=] MineE@[&BHsHAAA=]",' +
+			'		"zerglink": "Beetles@[&BJYHAAA=] Bridge@[&BIkHAAA=] Experiment@[&BIwHAAA=] Golem@[&BIoHAAA=] Nochtli@[&BHkHAAA=] Colocal@[&BHwHAAA=] MineE@[&BHsHAAA=]",' +
+			'		"apptext": "Beetles, Bridge, Experiment, Golem, Nochtli, Colocal, Serene, MineE"' +
+			'	},' +
+			'	"10": {' +
+			'		"chatlink": "Suit@[&BJMHAAA=] Leyline@[&BIMHAAA=] Town@[&BH4HAAA=] Basket@[&BHMHAAA=] MineNE@[&BH0HAAA=]",' +
+			'		"zerglink": "Suit@[&BJMHAAA=] Leyline@[&BIMHAAA=] Town@[&BH4HAAA=] MineNE@[&BH0HAAA=]",' +
+			'		"apptext": "Suit, Leyline, Town, Basket, MineNE"' +
+			'	},' +
+			'	"15": {' +
+			'		"chatlink": "Supplies@[&BJcHAAA=] Rustbucket@[&BJYHAAA=] TendrilW@[&BIYHAAA=] Shaman@[&BIsHAAA=] Victims@[&BIwHAAA=] Tootsie@[&BHYHAAA=] Crystals@[&BHIHAAA=] TendrilSE@[&BHMHAAA=]",' +
+			'		"apptext": "Supplies, Rustbucket, TendrilW, Shaman, Victims, Tootsie, Crystals, TendrilSE"' +
+			'	},' +
+			'	"20": {' +
+			'		"chatlink": "Beetles@[&BJYHAAA=] Bridge@[&BIkHAAA=] Experiment@[&BIwHAAA=] Golem@[&BIoHAAA=] Nochtli@[&BHkHAAA=] Colocal@[&BHwHAAA=] Serene@[&BHQHAAA=] MineE@[&BHsHAAA=]",' +
+			'		"zerglink": "Beetles@[&BJYHAAA=] Bridge@[&BIkHAAA=] Experiment@[&BIwHAAA=] Golem@[&BIoHAAA=] Nochtli@[&BHkHAAA=] Colocal@[&BHwHAAA=] MineE@[&BHsHAAA=]",' +
+			'		"apptext": "Beetles, Bridge, Experiment, Golem, Nochtli, Colocal, Serene, MineE"' +
+			'	},' +
+			'	"25": {' +
+			'		"chatlink": "Suit@[&BJMHAAA=] Leyline@[&BIMHAAA=] Town@[&BH4HAAA=] Basket@[&BHMHAAA=] MineNE@[&BH0HAAA=]",' +
+			'		"zerglink": "Suit@[&BJMHAAA=] Leyline@[&BIMHAAA=] Town@[&BH4HAAA=] MineNE@[&BH0HAAA=]",' +
+			'		"apptext": "Suit, Leyline, Town, Basket, MineNE"' +
+			'	},' +
+			'	"30": {' +
+			'		"chatlink": "Supplies@[&BJcHAAA=] Rustbucket@[&BJYHAAA=] TendrilW@[&BIYHAAA=] Shaman@[&BIsHAAA=] Victims@[&BIwHAAA=] Tootsie@[&BHYHAAA=] Crystals@[&BHIHAAA=] TendrilSE@[&BHMHAAA=]",' +
+			'		"apptext": "Supplies, Rustbucket, TendrilW, Shaman, Victims, Tootsie, Crystals, TendrilSE"' +
+			'	},' +
+			'	"35": {' +
+			'		"chatlink": "Beetles@[&BJYHAAA=] Bridge@[&BIkHAAA=] Experiment@[&BIwHAAA=] Golem@[&BIoHAAA=] Nochtli@[&BHkHAAA=] Colocal@[&BHwHAAA=] Serene@[&BHQHAAA=] MineE@[&BHsHAAA=]",' +
+			'		"zerglink": "Beetles@[&BJYHAAA=] Bridge@[&BIkHAAA=] Experiment@[&BIwHAAA=] Golem@[&BIoHAAA=] Nochtli@[&BHkHAAA=] Colocal@[&BHwHAAA=] MineE@[&BHsHAAA=]",' +
+			'		"apptext": "Beetles, Bridge, Experiment, Golem, Nochtli, Colocal, Serene, MineE"' +
+			'	},' +
+			'	"40": {' +
+			'		"chatlink": "Eway@[&BJcHAAA=] Giant@[&BIwHAAA=] Skritts@[&BIwHAAA=] Mites@[&BHUHAAA=] Haze@[&BHIHAAA=] Explosives@[&BH4HAAA=]",' +
+			'		"apptext": "Eway, Giant, Skritts, Mites, Haze, Explosives"' +
+			'	},' +
+			'	"45": {' +
+			'		"chatlink": "Devourer@[&BHkHAAA=]",' +
+			'		"apptext": "Devourer"' +
+			'	},' +
+			'	"50": {' +
+			'		"chatlink": "Eway@[&BJcHAAA=] Skritt Queen@[&BIoHAAA=] Skritts@[&BIwHAAA=] Chickenado@[&BI4HAAA=] Twister@[&BHoHAAA=] Mites@[&BHUHAAA=] Haze@[&BHIHAAA=]",' +
+			'		"apptext": "Eway, Skritt Queen, Skritts, Chickenado, Twister, Mites, Haze"' +
+			'	},' +
+			'	"55": {' +
+			'		"chatlink": "Beetle@[&BJcHAAA=] Monster@[&BHoHAAA=]",' +
+			'		"apptext": "Beetle, Monster"' +
+			'	}' +
+			'}'
+	
+			var chatlinks = JSON.parse(chatlinkJson);
+			var rightNowBase = "RIGHT NOW";
+			var upNextBase = "UP NEXT";
+	
+			function roundToFive(num, roundUp) {
+				var rounded = num / 5;
+				if (roundUp === true) {
+					rounded = Math.ceil(rounded);
+				}
+				else {
+					rounded = Math.floor(rounded);
+				}
+				
+				rounded = rounded * 5;
+				if (rounded < 10) {
+					rounded = "0" + rounded;
+				} else if (rounded == "60") {
+					rounded = "00";
+				}
+				
+				return rounded;
+	        }
+	        
+	        function addChatlinksToClipboard(rightNow) {
+	            var d = new Date();
+	            var m = d.getUTCMinutes();
+	            var prefix = "";
+	            if (rightNow === true) {
+	            	m = roundToFive(m, false);
+	            	prefix = "RIGHT NOW :" + m + " - ";
+	            } else {
+	            	m = roundToFive(m + 1, true);
+	            	prefix = "UP NEXT :" + m + " - ";
+	            }
+	            var textbody = chatlinks[m].chatlink;
+	            if (chatlinks[m].zerglink != null && chatlinks[m].zerglink !== undefined) {
+	            	textbody = chatlinks[m].zerglink;
+	            }
+	            overwolf.utils.placeOnClipboard(prefix + textbody);
+	        }
+	
+	    </script>
+		<button id="right-now" onclick="addChatlinksToClipboard(true);">Right Now</button>
+		<br>
+		<button id="up-next" onclick="addChatlinksToClipboard(false);">Up Next</button>
+		<script>
+			function updateTimers() {
+				var d = new Date();
+				var m = d.getUTCMinutes();
+				var nowm = roundToFive(m, false);
+				var nextm = roundToFive(m + 1, true);
+				$("#right-now").text(rightNowBase + " :" + nowm + " - " + chatlinks[nowm].apptext);
+				$("#up-next").text(upNextBase + " :" + nextm + " - " + chatlinks[nextm].apptext);
+			}
+			$(document).ready(function() {
+				updateTimers();
+				setInterval(function() {
+					updateTimers();
+				}, 5000); // every 5 seconds
+			});
+		</script>
 	</body>
 </html>
